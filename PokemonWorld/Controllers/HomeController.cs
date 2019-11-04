@@ -29,7 +29,7 @@ namespace PokemonWorld.Controllers
             // Map the parsed string to our Pokemon model.
             Pokemon pokemon = parsedString.ToObject<Pokemon>();
 
-            return View();
+            return View(pokemon);
         }
     }
 }
