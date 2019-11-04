@@ -31,5 +31,18 @@ namespace PokemonWorld.Controllers
 
             return View(pokemon);
         }
+
+        public ActionResult StarWars()
+        {
+            WebRequest request = WebRequest.Create("https://swapi.co/api/people/1");
+            WebResponse response = request.GetResponse();
+            Stream stream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(stream);
+            string readableResponse = reader.ReadToEnd();
+            JObject parsed = JObject.Parse(readableResponse);
+            SWCharacter character = parsed.ToObject<SWCharacter>();
+
+            return View(character);
+        }
     }
 }
