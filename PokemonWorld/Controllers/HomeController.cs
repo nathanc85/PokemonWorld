@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using PokemonWorld.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,8 +24,10 @@ namespace PokemonWorld.Controllers
             StreamReader reader = new StreamReader(stream);
             // Human readable response.
             string responseString = reader.ReadToEnd();
-
+            // Parses the response string.
             JObject parsedString = JObject.Parse(responseString);
+            // Map the parsed string to our Pokemon model.
+            Pokemon pokemon = parsedString.ToObject<Pokemon>();
 
             return View();
         }
